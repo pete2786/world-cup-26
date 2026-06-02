@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knockout Bracket — World Cup 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/bracket.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">FIFA World Cup • Knockout Stage</div>
+    <h1>Bracket <span class="yr">’26</span></h1>
+    <p class="sub">Tap the winner of every match. Winners advance automatically — you can only pick teams you’ve already moved on, so your bracket always makes sense.</p>
+    <div id="poolBadge" class="poolbadge"></div>
+  </header>
+
+  <div class="namebar">
+    <label for="who">Your name</label>
+    <input id="who" type="text" placeholder="e.g. Sam R." autocomplete="name">
+  </div>
+
+  <div class="progress">
+    <div class="bar"><i id="barFill"></i></div>
+    <div class="pcount"><span id="pcount">0 / 31 picked</span><span id="champTag" class="champ-tag"></span></div>
+  </div>
+
+  <div id="rounds"></div>
+</div>
+
+<div class="actions">
+  <div class="inner">
+    <span class="hint" id="hint">Pick all 31 matches to finish.</span>
+    <button class="btn primary" id="review" disabled>Review &amp; get code</button>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="sheet">
+    <div class="closebar"><button id="closeX" aria-label="close">×</button></div>
+    <h3>Your picks</h3>
+    <div class="champline"><span class="lbl">Champion</span><span id="rChamp">—</span></div>
+    <div id="review-list"></div>
+    <textarea id="code" class="codebox" readonly spellcheck="false"></textarea>
+    <div class="steprow">
+      <button class="btn" id="copyBtn">1 · Copy my picks <span id="copied" class="copied"></span></button>
+      <a class="btn submit" id="submitBtn" target="_blank" rel="noopener">2 · Open submit form</a>
+    </div>
+    <p class="note">Copy your picks, then open the form and paste them in. That’s it — no account, nothing to install.</p>
+  </div>
+</div>
+<script src="./config.js"></script>
+<script src="../shared/data.js"></script>
+<script src="../shared/bracket.js"></script>
+</body>
+</html>

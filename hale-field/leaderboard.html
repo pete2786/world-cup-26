@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard — World Cup 2026 Pick’em</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/leaderboard.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">FIFA World Cup • Live Standings</div>
+    <h1>Leaderboard <span class="yr">’26</span></h1>
+    <div id="poolBadge" class="poolbadge"></div>
+    <div><a id="joinBtn" class="cta" style="display:none">Make your picks →</a></div>
+  </header>
+
+  <section class="board">
+    <h2>Group Stage <span id="gCount" class="count"></span></h2><div class="hr"></div>
+    <div id="gBoard" class="rowlist"><div class="empty">Loading…</div></div>
+  </section>
+
+  <section class="board">
+    <h2>Knockout <span id="kCount" class="count"></span></h2><div class="hr"></div>
+    <div id="kBoard" class="rowlist"><div class="empty">Loading…</div></div>
+  </section>
+
+  <div class="foot">
+    <span><span class="dotlive"></span><span id="status">updating…</span></span>
+    <button class="refresh" id="refreshBtn">Refresh</button>
+  </div>
+</div>
+<script src="./config.js"></script>
+<script src="../shared/leaderboard.js"></script>
+</body>
+</html>

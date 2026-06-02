@@ -1,0 +1,75 @@
+const POOL = window.POOL;
+document.getElementById("poolBadge").textContent = POOL.label;
+if (POOL.joinUrl){ const j=document.getElementById("joinBtn"); j.href=POOL.joinUrl; j.style.display="inline-block"; }
+
+function parseCSV(text){
+  const rows=[]; let row=[], f="", q=false;
+  for(let i=0;i<text.length;i++){ const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){f+='"';i++;} else q=false; } else f+=c; }
+    else if(c==='"') q=true;
+    else if(c===',') { row.push(f); f=""; }
+    else if(c==='\n'){ row.push(f); rows.push(row); row=[]; f=""; }
+    else if(c!=='\r') f+=c;
+  }
+  if(f!==""||row.length){ row.push(f); rows.push(row); }
+  return rows;
+}
+
+// pull {name, val, rank} from a published leaderboard CSV using a value-column name
+function extract(text, valueHeader){
+  const rows=parseCSV(text);
+  let hi=-1;
+  for(let i=0;i<rows.length;i++){ if(rows[i].some(c=>/^player$/i.test((c||"").trim()))){ hi=i; break; } }
+  if(hi<0) return [];
+  const head=rows[hi].map(c=>(c||"").trim().toLowerCase());
+  const pi=head.indexOf("player");
+  const vi=head.indexOf(valueHeader.toLowerCase());
+  const ri=head.indexOf("rank");
+  const out=[];
+  for(let i=hi+1;i<rows.length;i++){
+    const name=(rows[i][pi]||"").trim();
+    if(!name || /^(tiebreak|if two|knockout champion|want flat)/i.test(name)) continue;
+    const val=vi>=0?parseFloat(rows[i][vi]):NaN;
+    const rank=ri>=0?parseInt(rows[i][ri],10):NaN;
+    out.push({name, val:isNaN(val)?0:val, rank:isNaN(rank)?null:rank});
+  }
+  out.sort((a,b)=> (a.rank&&b.rank)? a.rank-b.rank : (b.val-a.val) || a.name.localeCompare(b.name));
+  return out;
+}
+
+function rowHTML(p, idx, unit){
+  const rk = p.rank || (idx+1);
+  const cls = rk===1?"r1":rk===2?"r2":rk===3?"r3":"";
+  return `<div class="lrow ${cls}"><div class="rk">${rk}</div>
+    <div class="nm">${escapeHTML(p.name)}</div>
+    <div class="pt">${p.val}<small>${unit}</small></div></div>`;
+}
+function escapeHTML(s){ return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function paint(elId, countId, data, unit){
+  const el=document.getElementById(elId), cnt=document.getElementById(countId);
+  if(!data.length){ el.innerHTML='<div class="empty">No entries yet — be the first in.</div>'; cnt.textContent=""; return; }
+  cnt.textContent = data.length + " playing";
+  el.innerHTML = data.map((p,i)=>rowHTML(p,i,unit)).join("");
+}
+
+async function load(url, valueHeader){
+  if(!url || !/^https?:\/\//.test(url)) return null;
+  const res = await fetch(url + (url.includes("?")?"&":"?") + "_=" + Date.now());
+  if(!res.ok) throw new Error("fetch "+res.status);
+  return extract(await res.text(), valueHeader);
+}
+
+async function refresh(){
+  const st=document.getElementById("status"); st.textContent="updating…";
+  let ok=true;
+  try{ const g=await load(POOL.groupCsvUrl,"Points"); if(g===null) document.getElementById("gBoard").innerHTML='<div class="empty">Group leaderboard link not set.</div>'; else paint("gBoard","gCount",g,"pts"); }
+  catch(e){ ok=false; document.getElementById("gBoard").innerHTML='<div class="empty">Couldn’t load yet — is the Group leaderboard published?</div>'; }
+  try{ const k=await load(POOL.knockoutCsvUrl,"Total"); if(k===null) document.getElementById("kBoard").innerHTML='<div class="empty">Knockout leaderboard link not set.</div>'; else paint("kBoard","kCount",k,"pts"); }
+  catch(e){ ok=false; document.getElementById("kBoard").innerHTML='<div class="empty">Couldn’t load yet — is the Knockout leaderboard published?</div>'; }
+  st.textContent = ok ? "updated " + new Date().toLocaleTimeString() : "couldn’t reach the sheet";
+}
+
+document.getElementById("refreshBtn").addEventListener("click", refresh);
+refresh();
+setInterval(refresh, Math.max(15, POOL.refreshSeconds||60)*1000);

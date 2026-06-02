@@ -1,0 +1,100 @@
+:root{
+  --bg:#0d1015; --bg2:#11161d; --surface:#161c25; --surface2:#1c232e;
+  --line:#2a3340; --text:#eef2f6; --muted:#8a97a6;
+  --accent:#ff4b3e; --accent2:#00e0a4; --gold:#ffc857;
+  --r:14px; --shadow:0 10px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(255,75,62,.10), transparent 60%),
+    radial-gradient(700px 500px at -10% 10%, rgba(0,224,164,.08), transparent 55%),
+    var(--bg);
+  color:var(--text); font-family:"Manrope",sans-serif; line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px;margin:0 auto;padding:22px 16px 120px}
+header{padding:8px 0 10px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.kicker{font-family:"Oswald";letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:600}
+h1{font-family:"Oswald";font-weight:700;text-transform:uppercase;letter-spacing:.01em;
+   font-size:clamp(30px,8vw,46px);line-height:.96;margin:6px 0 4px}
+h1 .yr{color:var(--accent)}
+.sub{color:var(--muted);font-size:14px;max-width:52ch}
+.poolbadge{display:inline-block;margin-top:10px;font-family:"Oswald";text-transform:uppercase;
+  letter-spacing:.12em;font-size:13px;font-weight:600;color:var(--text);
+  background:var(--surface2);border:1px solid var(--line);padding:5px 12px;border-radius:999px}
+
+.namebar{display:flex;gap:10px;align-items:center;margin:18px 0 6px}
+.namebar label{font-family:"Oswald";text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--muted);white-space:nowrap}
+input[type=text]{flex:1;background:var(--surface);border:1px solid var(--line);color:var(--text);
+  border-radius:10px;padding:12px 14px;font-family:"Manrope";font-size:16px;font-weight:600;outline:none}
+input[type=text]:focus{border-color:var(--accent2)}
+
+.progress{position:sticky;top:0;z-index:20;background:linear-gradient(var(--bg),rgba(13,16,21,.86));
+  backdrop-filter:blur(6px);padding:12px 0 10px;margin:8px 0 4px;border-bottom:1px solid var(--line)}
+.bar{height:8px;background:var(--surface2);border-radius:999px;overflow:hidden}
+.bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .35s ease}
+.pcount{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:6px;font-weight:600}
+.champ-tag{color:var(--gold)}
+
+.round{margin-top:26px}
+.round h2{font-family:"Oswald";text-transform:uppercase;letter-spacing:.12em;font-size:15px;font-weight:600;
+  color:var(--text);margin:0 0 4px;display:flex;align-items:center;gap:10px}
+.round h2 .n{color:var(--muted);font-weight:400;font-size:13px}
+.round .hr{height:2px;background:linear-gradient(90deg,var(--accent),transparent 70%);border-radius:2px;margin-bottom:12px}
+
+.matches{display:grid;gap:10px}
+@media(min-width:560px){.matches.two{grid-template-columns:1fr 1fr}}
+.match{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  box-shadow:0 1px 0 rgba(255,255,255,.02) inset}
+.match .lab{font-family:"Oswald";text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--muted);
+  padding:8px 12px 2px}
+.team{display:flex;align-items:center;gap:10px;width:100%;text-align:left;cursor:pointer;
+  background:transparent;border:0;border-top:1px solid var(--line);color:var(--text);
+  font-family:"Manrope";font-weight:700;font-size:16px;padding:13px 14px;transition:background .15s,color .15s}
+.team:first-of-type{border-top:0}
+.team .dot{width:9px;height:9px;border-radius:50%;background:var(--surface2);border:1px solid var(--line);flex:none;transition:.15s}
+.team:hover:not(:disabled){background:var(--surface2)}
+.team.win{background:linear-gradient(90deg,rgba(0,224,164,.16),transparent);color:#fff}
+.team.win .dot{background:var(--accent2);border-color:var(--accent2);box-shadow:0 0 0 4px rgba(0,224,164,.15)}
+.team.lose{color:var(--muted);opacity:.6}
+.team:disabled{cursor:default;color:var(--muted);font-weight:600;font-style:italic;opacity:.8}
+.team .seed{margin-left:auto;font-size:12px;color:var(--muted);font-weight:600}
+
+.finalwrap .match{border-color:var(--gold)}
+.finalwrap .team.win{background:linear-gradient(90deg,rgba(255,200,87,.18),transparent)}
+.finalwrap .team.win .dot{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 4px rgba(255,200,87,.15)}
+
+.actions{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(13,16,21,.92);
+  backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:12px 16px}
+.actions .inner{max-width:760px;margin:0 auto;display:flex;gap:10px;align-items:center}
+.btn{font-family:"Oswald";text-transform:uppercase;letter-spacing:.08em;font-weight:600;font-size:15px;
+  border-radius:11px;padding:14px 18px;border:1px solid var(--line);background:var(--surface2);color:var(--text);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;flex:1}
+.btn.primary:disabled{background:var(--surface2);border-color:var(--line);color:var(--muted);cursor:not-allowed}
+.btn.ghost{background:transparent}
+.hint{font-size:12px;color:var(--muted);flex:1}
+
+/* review modal */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(5,7,10,.72);display:none;align-items:flex-end;justify-content:center}
+.modal.open{display:flex}
+.sheet{background:var(--bg2);border:1px solid var(--line);border-radius:18px 18px 0 0;width:100%;max-width:760px;
+  max-height:92vh;overflow:auto;padding:20px 18px 26px;box-shadow:var(--shadow)}
+@media(min-width:760px){.modal{align-items:center}.sheet{border-radius:18px}}
+.sheet h3{font-family:"Oswald";text-transform:uppercase;letter-spacing:.08em;margin:0 0 2px;font-size:22px}
+.champline{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,rgba(255,200,87,.15),transparent);
+  border:1px solid var(--gold);border-radius:12px;padding:12px 14px;margin:12px 0;font-weight:800;font-size:18px}
+.champline .lbl{font-family:"Oswald";font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.revrow{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.revrow .k{color:var(--muted);font-family:"Oswald";letter-spacing:.06em;text-transform:uppercase;font-size:12px}
+.revrow .v{font-weight:700;text-align:right}
+.codebox{width:100%;background:var(--surface);border:1px solid var(--line);color:var(--muted);border-radius:10px;
+  padding:10px;font-family:ui-monospace,Menlo,monospace;font-size:11px;margin-top:14px;resize:vertical;min-height:54px}
+.steprow{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.steprow .btn{flex:1;min-width:150px;text-align:center}
+.btn.submit{background:var(--accent2);border-color:var(--accent2);color:#062a22}
+.copied{color:var(--accent2);font-weight:700;font-size:13px;margin-left:6px}
+.note{font-size:12px;color:var(--muted);margin-top:12px}
+.closebar{display:flex;justify-content:flex-end;margin:-6px -4px 0}
+.closebar button{background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
