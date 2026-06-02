@@ -63,9 +63,7 @@ function openReview(){
   });
   document.getElementById("rWorst").textContent=document.getElementById("worst").value;
   document.getElementById("rGoals").textContent=document.getElementById("goals").value.trim();
-  document.getElementById("code").value=buildCode();
-  wireSubmit(POOL.submitUrl);
-  document.getElementById("copied").textContent="";
+  wireSubmit(POOL.submitUrl, buildCode());
   document.getElementById("modal").classList.add("open");
 }
 
@@ -76,11 +74,5 @@ document.getElementById("goals").addEventListener("input",updateStatus);
 document.getElementById("review").addEventListener("click",openReview);
 document.getElementById("closeX").addEventListener("click",()=>document.getElementById("modal").classList.remove("open"));
 document.getElementById("modal").addEventListener("click",e=>{ if(e.target.id==="modal") e.currentTarget.classList.remove("open"); });
-document.getElementById("copyBtn").addEventListener("click",async()=>{
-  const txt=document.getElementById("code").value;
-  try{ await navigator.clipboard.writeText(txt); }
-  catch(e){ const t=document.getElementById("code"); t.focus(); t.select(); document.execCommand("copy"); }
-  document.getElementById("copied").textContent="✓ copied";
-});
 
 renderGroups(); updateStatus();

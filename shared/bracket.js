@@ -122,9 +122,7 @@ function openReview(){
     row.innerHTML=`<span class="k">${k}</span><span class="v">${v}</span>`;
     list.appendChild(row);
   });
-  document.getElementById("code").value = buildCode();
-  wireSubmit(POOL.bracketSubmitUrl || POOL.submitUrl);
-  document.getElementById("copied").textContent="";
+  wireSubmit(POOL.bracketSubmitUrl || POOL.submitUrl, buildCode());
   document.getElementById("modal").classList.add("open");
 }
 
@@ -133,11 +131,5 @@ document.getElementById("email").addEventListener("input", updateStatus);
 document.getElementById("review").addEventListener("click", openReview);
 document.getElementById("closeX").addEventListener("click", ()=>document.getElementById("modal").classList.remove("open"));
 document.getElementById("modal").addEventListener("click", e=>{ if(e.target.id==="modal") e.currentTarget.classList.remove("open"); });
-document.getElementById("copyBtn").addEventListener("click", async ()=>{
-  const txt = document.getElementById("code").value;
-  try{ await navigator.clipboard.writeText(txt); }
-  catch(e){ const t=document.getElementById("code"); t.focus(); t.select(); document.execCommand("copy"); }
-  document.getElementById("copied").textContent="✓ copied";
-});
 
 render();

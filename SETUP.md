@@ -100,9 +100,7 @@ Picks land straight in the workbook — no forms, no copy/paste, no manual entry
 
 Now a submit writes the row directly into **Group Picks** (16 fields) or **Knockout Picks** (33 fields) — the script picks the right tab automatically. **Email is the last field**, so it lands in a trailing column without touching the scoring columns, and re-submitting with the same email **updates** that person's row instead of duplicating it. Email stays in the private Picks tab — it's never in the published leaderboard.
 
-### No-setup alternative
-
-Leave `submitUrl` blank. Players tap **Copy code** and send it to you (email/chat); you paste each code into the next empty row of the matching tab — **Group Picks** (16 fields) or **Knockout Picks** (33 fields). Because the code is tab-separated, one paste fills the whole row.
+> A pool's `submitUrl` (the Apps Script web app) must be set before you share its pick pages — it's the only submission path. Until it's set, the **Submit my picks** button just tells players to ask you for the link.
 
 Everything else — scoring, the two leaderboards, and both payouts — updates on its own as you fill the **Results** tab.
 
