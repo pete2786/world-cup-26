@@ -126,10 +126,13 @@ function openReview(){
   document.getElementById("modal").classList.add("open");
 }
 
-document.getElementById("who").addEventListener("input", updateStatus);
-document.getElementById("email").addEventListener("input", updateStatus);
-document.getElementById("review").addEventListener("click", openReview);
-document.getElementById("closeX").addEventListener("click", ()=>document.getElementById("modal").classList.remove("open"));
-document.getElementById("modal").addEventListener("click", e=>{ if(e.target.id==="modal") e.currentTarget.classList.remove("open"); });
+// null-safe listener binding: a missing element (e.g. during a cache version
+// skew) is skipped instead of throwing and aborting the rest of the script.
+function on(id,ev,fn){ const el=document.getElementById(id); if(el) el.addEventListener(ev,fn); }
+on("who","input",updateStatus);
+on("email","input",updateStatus);
+on("review","click",openReview);
+on("closeX","click",()=>document.getElementById("modal").classList.remove("open"));
+on("modal","click",e=>{ if(e.target.id==="modal") e.currentTarget.classList.remove("open"); });
 
 render();
