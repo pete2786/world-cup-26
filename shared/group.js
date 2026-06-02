@@ -40,19 +40,22 @@ function updateStatus(){
   document.getElementById("pcount").textContent=`${n} / ${TOTAL} done`;
   document.getElementById("barFill").style.width=(n/TOTAL*100)+"%";
   const name=document.getElementById("who").value.trim();
-  document.getElementById("review").disabled = !(n===TOTAL && name.length>0);
+  const email=document.getElementById("email").value.trim();
+  document.getElementById("review").disabled = !(n===TOTAL && name.length>0 && emailOk(email));
   document.getElementById("hint").textContent =
-    n<TOTAL ? `${TOTAL-n} left — groups, worst team, goals total.` : (name? "All set — review your picks." : "Enter your name to finish.");
+    n<TOTAL ? `${TOTAL-n} left — groups, worst team, goals total.`
+            : (!name ? "Enter your name to finish." : (!emailOk(email) ? "Add your email to finish." : "All set — review your picks."));
 }
 
 function buildCode(){
   const name=document.getElementById("who").value.trim();
-  return [name, ...winners, document.getElementById("worst").value, document.getElementById("goals").value.trim()].join("\t");
+  const email=document.getElementById("email").value.trim();
+  return [name, ...winners, document.getElementById("worst").value, document.getElementById("goals").value.trim(), email].join("\t");
 }
 
 function openReview(){
   const name=document.getElementById("who").value.trim();
-  if(done()!==TOTAL || !name) return;
+  if(done()!==TOTAL || !name || !emailOk(document.getElementById("email").value)) return;
   const wg=document.getElementById("wgrid"); wg.innerHTML="";
   LETTERS.forEach((L,i)=>{
     const c=document.createElement("div"); c.className="cell";
@@ -61,13 +64,13 @@ function openReview(){
   document.getElementById("rWorst").textContent=document.getElementById("worst").value;
   document.getElementById("rGoals").textContent=document.getElementById("goals").value.trim();
   document.getElementById("code").value=buildCode();
-  const sb=document.getElementById("submitBtn"); const url=POOL.submitUrl;
-  if(url && /^https?:\/\//.test(url)){ sb.href=url; } else { sb.href="#"; sb.textContent="2 · (submit link not set)"; }
+  wireSubmit(POOL.submitUrl);
   document.getElementById("copied").textContent="";
   document.getElementById("modal").classList.add("open");
 }
 
 document.getElementById("who").addEventListener("input",updateStatus);
+document.getElementById("email").addEventListener("input",updateStatus);
 document.getElementById("worst").addEventListener("change",updateStatus);
 document.getElementById("goals").addEventListener("input",updateStatus);
 document.getElementById("review").addEventListener("click",openReview);

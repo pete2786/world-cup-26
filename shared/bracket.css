@@ -29,9 +29,9 @@ h1 .yr{color:var(--accent)}
 
 .namebar{display:flex;gap:10px;align-items:center;margin:18px 0 6px}
 .namebar label{font-family:"Oswald";text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--muted);white-space:nowrap}
-input[type=text]{flex:1;background:var(--surface);border:1px solid var(--line);color:var(--text);
+input[type=text],input[type=email]{flex:1;background:var(--surface);border:1px solid var(--line);color:var(--text);
   border-radius:10px;padding:12px 14px;font-family:"Manrope";font-size:16px;font-weight:600;outline:none}
-input[type=text]:focus{border-color:var(--accent2)}
+input[type=text]:focus,input[type=email]:focus{border-color:var(--accent2)}
 
 .progress{position:sticky;top:0;z-index:20;background:linear-gradient(var(--bg),rgba(13,16,21,.86));
   backdrop-filter:blur(6px);padding:12px 0 10px;margin:8px 0 4px;border-bottom:1px solid var(--line)}

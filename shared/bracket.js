@@ -88,24 +88,26 @@ function updateStatus(){
   const champ = picks[4][0];
   document.getElementById("champTag").textContent = champ ? "🏆 " + champ : "";
   const name = document.getElementById("who").value.trim();
-  const ready = n===TOTAL && name.length>0;
+  const email = document.getElementById("email").value.trim();
+  const ready = n===TOTAL && name.length>0 && emailOk(email);
   const btn = document.getElementById("review");
   btn.disabled = !ready;
   document.getElementById("hint").textContent =
     n<TOTAL ? `Pick all 31 matches to finish (${TOTAL-n} left).`
-            : (name? "All set — review your bracket." : "Enter your name to finish.");
+            : (!name ? "Enter your name to finish." : (!emailOk(email) ? "Add your email to finish." : "All set — review your bracket."));
 }
 
 // build the tab-separated code: Name + 31 picks, in sheet column order
 function buildCode(){
   const name = document.getElementById("who").value.trim();
+  const email = document.getElementById("email").value.trim();
   const flat = [].concat(...picks.map(r=>r.map(x=>x||"")));
-  return [name, ...flat].join("\t");
+  return [name, ...flat, email].join("\t");
 }
 
 function openReview(){
   const name = document.getElementById("who").value.trim();
-  if (countPicked()!==TOTAL || !name) return;
+  if (countPicked()!==TOTAL || !name || !emailOk(document.getElementById("email").value)) return;
   document.getElementById("rChamp").textContent = picks[4][0];
   const list = document.getElementById("review-list");
   list.innerHTML = "";
@@ -121,15 +123,13 @@ function openReview(){
     list.appendChild(row);
   });
   document.getElementById("code").value = buildCode();
-  const sb = document.getElementById("submitBtn");
-  const url = POOL.bracketSubmitUrl || POOL.submitUrl;
-  if (url && /^https?:\/\//.test(url)){ sb.href=url; sb.style.display=""; }
-  else { sb.href="#"; sb.textContent="2 · (submit link not set)"; }
+  wireSubmit(POOL.bracketSubmitUrl || POOL.submitUrl);
   document.getElementById("copied").textContent="";
   document.getElementById("modal").classList.add("open");
 }
 
 document.getElementById("who").addEventListener("input", updateStatus);
+document.getElementById("email").addEventListener("input", updateStatus);
 document.getElementById("review").addEventListener("click", openReview);
 document.getElementById("closeX").addEventListener("click", ()=>document.getElementById("modal").classList.remove("open"));
 document.getElementById("modal").addEventListener("click", e=>{ if(e.target.id==="modal") e.currentTarget.classList.remove("open"); });

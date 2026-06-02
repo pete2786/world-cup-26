@@ -28,7 +28,7 @@ h1 .yr{color:var(--accent)}
 
 .namebar{display:flex;gap:10px;align-items:center;margin:18px 0 6px}
 .namebar label{font-family:"Oswald";text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--muted);white-space:nowrap}
-input[type=text],input[type=number]{flex:1;background:var(--surface);border:1px solid var(--line);color:var(--text);
+input[type=text],input[type=number],input[type=email]{flex:1;background:var(--surface);border:1px solid var(--line);color:var(--text);
   border-radius:10px;padding:12px 14px;font-family:"Manrope";font-size:16px;font-weight:600;outline:none;width:100%}
 input:focus,select:focus{border-color:var(--accent2)}
 

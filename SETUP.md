@@ -85,15 +85,24 @@ Once the Round-of-32 matchups are confirmed, edit **one file**: `shared/data.js`
 
 ---
 
-## Collecting picks (how a code gets to you)
+## Collecting picks
 
-Both pick pages produce one **tab-separated code** (name + picks) and give a Copy button plus an "Open submit form" link (`submitUrl`). Pick whichever delivery you like:
+Players enter their **name + email**, make their picks, and tap **Submit my picks**. Each page also has a **Copy code** button as a manual fallback. There are two ways to receive picks:
 
-- **One-field Google Form (hands-off).** Make a form with a single short-answer question, "Paste your picks code." Set `submitUrl` to that form. Responses auto-collect in a sheet; you copy each code into the Picks tab.
-- **Email (zero setup).** Set `submitUrl` to `mailto:you@email.com?subject=Picks`. The button opens their mail app with the code in the body.
-- **Group chat.** Just have them paste the code to you; leave `submitUrl` blank or point it at the chat.
+### Recommended: one-tap direct submit (Apps Script web app)
 
-**Putting codes in the sheet:** paste a code into the next empty row of the matching tab — **Group Picks** for group codes (15 fields), **Knockout Picks** for bracket codes (32 fields). Because the code is tab-separated, pasting fills the columns automatically — no parsing. (If you collect via a Form, the code lands in a single cell; copy that cell and paste into the Picks tab, or use `=SPLIT(cell, CHAR(9))`.)
+Picks land straight in the workbook — no forms, no copy/paste, no manual entry. Set this up **once per pool**:
+
+1. Open the pool's Google Sheet → **Extensions → Apps Script**.
+2. Delete the starter code, paste the contents of [`apps-script/Code.gs`](apps-script/Code.gs), and Save.
+3. **Deploy → New deployment → Web app.** Set **Execute as: Me** and **Who has access: Anyone**. Deploy and authorize (you'll approve access to your own sheet).
+4. Copy the **Web app URL** (ends in `/exec`) and put it in that pool's `config.js` as `submitUrl`. Commit and push.
+
+Now a submit writes the row directly into **Group Picks** (16 fields) or **Knockout Picks** (33 fields) — the script picks the right tab automatically. **Email is the last field**, so it lands in a trailing column without touching the scoring columns, and re-submitting with the same email **updates** that person's row instead of duplicating it. Email stays in the private Picks tab — it's never in the published leaderboard.
+
+### No-setup alternative
+
+Leave `submitUrl` blank. Players tap **Copy code** and send it to you (email/chat); you paste each code into the next empty row of the matching tab — **Group Picks** (16 fields) or **Knockout Picks** (33 fields). Because the code is tab-separated, one paste fills the whole row.
 
 Everything else — scoring, the two leaderboards, and both payouts — updates on its own as you fill the **Results** tab.
 

@@ -23,6 +23,10 @@
     <label for="who">Your name</label>
     <input id="who" type="text" placeholder="e.g. Sam R." autocomplete="name">
   </div>
+  <div class="namebar">
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="you@email.com" autocomplete="email" inputmode="email">
+  </div>
 
   <div class="progress">
     <div class="bar"><i id="barFill"></i></div>
@@ -47,14 +51,15 @@
     <div id="review-list"></div>
     <textarea id="code" class="codebox" readonly spellcheck="false"></textarea>
     <div class="steprow">
-      <button class="btn" id="copyBtn">1 · Copy my picks <span id="copied" class="copied"></span></button>
-      <a class="btn submit" id="submitBtn" target="_blank" rel="noopener">2 · Open submit form</a>
+      <button class="btn submit" id="submitBtn">Submit my picks</button>
+      <button class="btn" id="copyBtn">Copy code <span id="copied" class="copied"></span></button>
     </div>
-    <p class="note">Copy your picks, then open the form and paste them in. That’s it — no account, nothing to install.</p>
+    <p class="note" id="submitNote">One tap sends your picks straight in. Trouble? Tap “Copy code” and send it to the organizer.</p>
   </div>
 </div>
 <script src="./config.js"></script>
 <script src="../shared/data.js"></script>
+<script src="../shared/submit.js"></script>
 <script src="../shared/bracket.js"></script>
 </body>
 </html>
