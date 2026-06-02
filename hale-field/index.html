@@ -15,7 +15,10 @@
     <div class="kicker">FIFA World Cup • Live Standings</div>
     <h1>Leaderboard <span class="yr">’26</span></h1>
     <div id="poolBadge" class="poolbadge"></div>
-    <div><a id="joinBtn" class="cta" style="display:none">Make your picks →</a></div>
+    <nav class="poolnav">
+      <a class="navbtn" href="./group.html">Group Stage Picks</a>
+      <a class="navbtn locked" id="koLink" href="./bracket.html" aria-disabled="true">Knockout Bracket <span class="lock">🔒</span></a>
+    </nav>
   </header>
 
   <section class="board">
@@ -34,6 +37,7 @@
   </div>
 </div>
 <script src="./config.js"></script>
+<script src="../shared/data.js"></script>
 <script src="../shared/leaderboard.js"></script>
 </body>
 </html>

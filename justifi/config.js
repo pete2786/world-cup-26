@@ -6,6 +6,5 @@ window.POOL = {
   bracketSubmitUrl: "",
   groupCsvUrl:      "PLACEHOLDER",
   knockoutCsvUrl:   "PLACEHOLDER",
-  joinUrl:          "",
   refreshSeconds:   60
 };

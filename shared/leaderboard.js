@@ -1,6 +1,21 @@
 const POOL = window.POOL;
 document.getElementById("poolBadge").textContent = POOL.label;
-if (POOL.joinUrl){ const j=document.getElementById("joinBtn"); j.href=POOL.joinUrl; j.style.display="inline-block"; }
+
+// Knockout link: active once the real Round of 32 is in (window.KNOCKOUT_OPEN),
+// otherwise grayed out and not navigable.
+(function initNav(){
+  const ko = document.getElementById("koLink");
+  if (!ko) return;
+  if (window.KNOCKOUT_OPEN){
+    ko.classList.remove("locked");
+    ko.removeAttribute("aria-disabled");
+    ko.title = "";
+    const lock = ko.querySelector(".lock"); if (lock) lock.remove();
+  } else {
+    ko.removeAttribute("href");          // not navigable while locked
+    ko.title = "Opens once the group stage is over and the Round of 32 is set.";
+  }
+})();
 
 function parseCSV(text){
   const rows=[]; let row=[], f="", q=false;

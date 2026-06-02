@@ -6,6 +6,5 @@ window.POOL = {
   bracketSubmitUrl: "",            // optional; falls back to submitUrl if blank
   groupCsvUrl:      "PLACEHOLDER", // published Group Leaderboard CSV URL
   knockoutCsvUrl:   "PLACEHOLDER", // published Knockout Leaderboard CSV URL
-  joinUrl:          "",            // optional: this pool's group.html URL (button on leaderboard)
   refreshSeconds:   60
 };

@@ -19,9 +19,9 @@ shared/
   leaderboard.js   page logic; each reads window.POOL from a pool's config.js
 <pool>/
   config.js        the only per-pool file: label, submit + published-CSV URLs
-  group.html
-  bracket.html
-  leaderboard.html
+  index.html       the leaderboard — the pool's landing page; links to the picks pages
+  group.html       group-stage picks
+  bracket.html     knockout bracket (leaderboard link to it stays grayed until R32 is set)
 ```
 
 ## Set up your own pool
@@ -36,7 +36,7 @@ No changes to `shared/` are needed to add a pool.
 
 ```bash
 python3 -m http.server 8765
-# then open http://localhost:8765/<pool>/group.html
+# then open http://localhost:8765/<pool>/   (the leaderboard; links to the picks pages)
 ```
 
 See **[SETUP.md](SETUP.md)** for the full workflow (privacy model, GitHub Pages setup, per-pool configuration, collecting picks, and updating the bracket once the knockout round is set).

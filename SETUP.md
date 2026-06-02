@@ -23,7 +23,7 @@ Net result: picks live only in the private file (admin = you); the leaderboard p
 ## One-time setup (GitHub Pages)
 
 1. Push this repo to your GitHub account and, in **Settings → Pages**, set the source to the `main` branch, root folder. (On a free account the repo must be public; nothing sensitive lives in it.)
-2. Your site goes live at `https://<you>.github.io/<repo>/`. Each pool's pages live at a sub-path, e.g. `https://<you>.github.io/<repo>/<pool>/leaderboard.html`.
+2. Your site goes live at `https://<you>.github.io/<repo>/`. Each pool lives at `https://<you>.github.io/<repo>/<pool>/` — and that pool root **is the leaderboard** (the standings page, `index.html`), with links from there to the group picks (`group.html`) and the knockout bracket (`bracket.html`).
 3. A `.nojekyll` file is included so the base URL stays a neutral 404 instead of rendering the README — the site doesn't advertise your pools.
 
 No per-pool repo setup is needed — adding a pool is just adding a folder (see "Adding a pool" below).
@@ -58,7 +58,6 @@ window.POOL = {
   bracketSubmitUrl: "",                // optional; falls back to submitUrl if blank
   groupCsvUrl:      "...",             // paste the Group Leaderboard published CSV link here
   knockoutCsvUrl:   "...",             // paste the Knockout Leaderboard published CSV link here
-  joinUrl:          "...",             // this pool's group.html URL (adds button on leaderboard)
   refreshSeconds:   60
 };
 ```
@@ -66,8 +65,8 @@ window.POOL = {
 That's it — no edits to the HTML files. Commit and push; the pages update automatically.
 
 ### E. Share the links
-- **To entice / show standings:** share the `leaderboard.html` link publicly. It shows both sections and who's already in, refreshing about once a minute.
-- **To collect picks:** share `group.html` now; share `bracket.html` after the group stage ends.
+- **To entice / show standings:** share the pool link `https://<you>.github.io/<repo>/<pool>/`. It opens the leaderboard (both sections + who's in, refreshing about once a minute) with buttons to the picks pages.
+- **To collect picks:** share `…/<pool>/group.html` now; share `…/<pool>/bracket.html` after the group stage ends. (The leaderboard's **Knockout Bracket** button stays grayed out until you set the real Round of 32 — see below.)
 
 ---
 
@@ -82,7 +81,7 @@ That's it — no edits to the HTML files. Commit and push; the pages update auto
 
 ## Updating the Round of 32
 
-Once the Round-of-32 matchups are confirmed, edit **one file**: `shared/data.js`. Replace the placeholder `window.R32` array with the 16 real matchups. This update applies to **all pools** at once. Commit and push.
+Once the Round-of-32 matchups are confirmed, edit **one file**: `shared/data.js`. Replace the placeholder `window.R32` array with the 16 real matchups. This update applies to **all pools** at once — and it also automatically un-grays the **Knockout Bracket** link on every pool's leaderboard (the link unlocks the moment `R32` no longer matches the shipped placeholders; no other switch to flip). Commit and push.
 
 ---
 

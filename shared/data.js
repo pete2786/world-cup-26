@@ -27,3 +27,9 @@ window.R32 = [
   ["Canada","Qatar"],       ["South Korea","Ivory Coast"],
   ["Ghana","Panama"],       ["Austria","Iraq"]
 ];
+
+// The "Knockout Bracket" link on each pool's leaderboard stays grayed out until
+// the real Round of 32 is set. It unlocks automatically the moment window.R32
+// above no longer matches the shipped placeholders below — so just edit R32 on
+// knockout day and every pool's knockout link goes live. (Don't edit this line.)
+window.KNOCKOUT_OPEN = JSON.stringify(window.R32) !== '[["Spain","Uruguay"],["Germany","Switzerland"],["Brazil","Japan"],["Croatia","Morocco"],["Argentina","Norway"],["Portugal","Mexico"],["France","Senegal"],["England","Netherlands"],["Belgium","Ecuador"],["United States","Colombia"],["Egypt","Australia"],["Sweden","Scotland"],["Canada","Qatar"],["South Korea","Ivory Coast"],["Ghana","Panama"],["Austria","Iraq"]]';
