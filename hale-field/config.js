@@ -6,5 +6,8 @@ window.POOL = {
   bracketSubmitUrl: "",            // optional; falls back to submitUrl if blank
   groupCsvUrl:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbGs7rnyfUFQtO0hBpVhQSnbQav5SR4jpkxkskm8l_rjeImnL0dhTJClJstjQeIIWPpeuLD3z-XyMy/pub?gid=1069705092&single=true&output=csv",
   knockoutCsvUrl:   "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbGs7rnyfUFQtO0hBpVhQSnbQav5SR4jpkxkskm8l_rjeImnL0dhTJClJstjQeIIWPpeuLD3z-XyMy/pub?gid=825300602&single=true&output=csv",
-  refreshSeconds:   60
+  refreshSeconds:   60,
+  entryFee:         10,                                    // $ per round (shown on the leaderboard; set the sheet's Settings buy-ins to match)
+  venmo:            "https://account.venmo.com/u/davidehp",
+  paypal:           "https://paypal.me/davidehp"
 };

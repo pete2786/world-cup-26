@@ -29,6 +29,21 @@ h1 .yr{color:var(--accent)}
 .navbtn.locked{background:var(--surface2);color:var(--muted);border-color:var(--line);cursor:not-allowed}
 .navbtn .lock{font-size:12px;opacity:.85}
 
+.info{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:18px}
+.info-how{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.info-how b{color:var(--text);font-weight:700}
+.info-dates{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}
+.info-dates li{display:flex;gap:12px;font-size:13px;align-items:baseline}
+.info-dates .d{font-family:"Oswald";font-weight:600;letter-spacing:.04em;color:var(--accent);min-width:52px}
+.info-dates .l{color:var(--muted)}
+.info-pay{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:space-between;border-top:1px solid var(--line);padding-top:12px}
+.info-pay .pl{font-family:"Oswald";text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--text)}
+.paybtns{display:flex;gap:8px}
+.pay{display:inline-block;text-decoration:none;font-family:"Oswald";text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:13px;color:#fff;padding:9px 16px;border-radius:9px}
+.pay.venmo{background:#008CFF}
+.pay.paypal{background:#0070BA}
+.pay:hover{filter:brightness(1.08)}
+
 .board{margin-top:24px}
 .board h2{font-family:"Oswald";text-transform:uppercase;letter-spacing:.12em;font-size:16px;font-weight:600;margin:0 0 2px;display:flex;align-items:center;gap:10px}
 .board h2 .count{font-family:"Manrope";font-weight:700;font-size:12px;color:var(--accent2);background:rgba(0,224,164,.12);padding:3px 9px;border-radius:999px;letter-spacing:0}

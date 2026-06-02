@@ -6,5 +6,8 @@ window.POOL = {
   bracketSubmitUrl: "",
   groupCsvUrl:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4IvSJa5miZlvtq76WVC-wxf2c-Oyd9S-riiuvJZ1t08DAXYzVd4DtT3jzlMOx6zlJ0Cv350BV4Vrh/pub?gid=1069705092&single=true&output=csv",
   knockoutCsvUrl:   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4IvSJa5miZlvtq76WVC-wxf2c-Oyd9S-riiuvJZ1t08DAXYzVd4DtT3jzlMOx6zlJ0Cv350BV4Vrh/pub?gid=825300602&single=true&output=csv",
-  refreshSeconds:   60
+  refreshSeconds:   60,
+  entryFee:         10,
+  venmo:            "https://account.venmo.com/u/davidehp",
+  paypal:           "https://paypal.me/davidehp"
 };

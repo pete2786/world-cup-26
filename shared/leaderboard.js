@@ -17,6 +17,22 @@ document.getElementById("poolBadge").textContent = POOL.label;
   }
 })();
 
+// Info card: how-it-works + key dates (shared SCHEDULE) + pay buttons (from config).
+(function renderInfo(){
+  const el = document.getElementById("info");
+  if (!el) return;
+  const fee = POOL.entryFee;
+  const dates = (window.SCHEDULE || []).map(s =>
+    `<li><span class="d">${s.date}</span><span class="l">${s.label}</span></li>`).join("");
+  const pay = [];
+  if (POOL.venmo)  pay.push(`<a class="pay venmo" href="${POOL.venmo}" target="_blank" rel="noopener">Venmo</a>`);
+  if (POOL.paypal) pay.push(`<a class="pay paypal" href="${POOL.paypal}" target="_blank" rel="noopener">PayPal</a>`);
+  el.innerHTML =
+    `<p class="info-how">Two contests, two pots — <b>Group stage</b> and <b>Knockout</b>${fee?`, <b>$${fee} to enter each round</b>`:""}. Group picks are open now; the knockout bracket opens after the group stage.</p>`
+    + (dates ? `<ul class="info-dates">${dates}</ul>` : "")
+    + (pay.length ? `<div class="info-pay"><span class="pl">Pay your entry${fee?` · $${fee}/round`:""}</span><span class="paybtns">${pay.join("")}</span></div>` : "");
+})();
+
 function parseCSV(text){
   const rows=[]; let row=[], f="", q=false;
   for(let i=0;i<text.length;i++){ const c=text[i];
