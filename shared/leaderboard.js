@@ -17,6 +17,21 @@ document.getElementById("poolBadge").textContent = POOL.label;
   }
 })();
 
+// Rotating top banner: a random photo of footballing despair on each load.
+// (Link-preview image stays fixed in the page <head>, so previews are consistent.)
+(function rotateBanner(){
+  const img = document.querySelector(".toplogo");
+  if (!img) return;
+  const BANNERS = [
+    "../shared/seven-one.png",
+    "../shared/despair-2.png",
+    "../shared/despair-3.png",
+    "../shared/despair-4.png",
+    "../shared/despair-5.png"
+  ];
+  img.src = BANNERS[Math.floor(Math.random() * BANNERS.length)];
+})();
+
 // Info card: how-it-works + key dates (shared SCHEDULE) + pay buttons (from config).
 (function renderInfo(){
   const el = document.getElementById("info");
