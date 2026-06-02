@@ -4,7 +4,7 @@ window.POOL = {
   label:            "Hale Field",
   submitUrl:        "",            // where pick codes go (group + bracket). Form/mailto/blank.
   bracketSubmitUrl: "",            // optional; falls back to submitUrl if blank
-  groupCsvUrl:      "PLACEHOLDER", // published Group Leaderboard CSV URL
-  knockoutCsvUrl:   "PLACEHOLDER", // published Knockout Leaderboard CSV URL
+  groupCsvUrl:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbGs7rnyfUFQtO0hBpVhQSnbQav5SR4jpkxkskm8l_rjeImnL0dhTJClJstjQeIIWPpeuLD3z-XyMy/pub?gid=1069705092&single=true&output=csv",
+  knockoutCsvUrl:   "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbGs7rnyfUFQtO0hBpVhQSnbQav5SR4jpkxkskm8l_rjeImnL0dhTJClJstjQeIIWPpeuLD3z-XyMy/pub?gid=825300602&single=true&output=csv",
   refreshSeconds:   60
 };
