@@ -24,6 +24,9 @@ document.getElementById("poolBadge").textContent = POOL.label;
       ko.title = "Opens once the group stage is over and the Round of 32 is set.";
     }
   }
+  // "Everyone's Picks" button: only show once picks are published for this pool.
+  const pk = document.getElementById("picksLink");
+  if (pk && POOL.picksCsvUrl && /^https?:\/\//.test(POOL.picksCsvUrl)) pk.style.display = "";
 })();
 
 // Rotating top banner: a random photo of footballing despair on each load.

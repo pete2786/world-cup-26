@@ -29,6 +29,8 @@ h1 .yr{color:var(--accent)}
   text-decoration:none;padding:11px 16px;border-radius:11px;border:1px solid var(--accent);background:var(--accent);color:#fff}
 .navbtn:hover{filter:brightness(1.07)}
 .navbtn.locked{background:var(--surface2);color:var(--muted);border-color:var(--line);cursor:not-allowed}
+.navbtn.alt{background:var(--surface2);border-color:var(--line);color:var(--text)}
+.navbtn.alt:hover{border-color:var(--accent2);color:#fff}
 .navbtn .lock{font-size:12px;opacity:.85}
 
 .info{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:18px}

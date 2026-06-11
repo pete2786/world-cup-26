@@ -10,5 +10,6 @@ window.POOL = {
   refreshSeconds:   60,
   entryFee:         10,
   venmo:            "https://account.venmo.com/u/davidehp",
-  paypal:           "https://paypal.me/davidehp"
+  paypal:           "https://paypal.me/davidehp",
+  picksCsvUrl:      ""
 };

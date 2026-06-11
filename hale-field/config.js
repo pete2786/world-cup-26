@@ -10,5 +10,6 @@ window.POOL = {
   refreshSeconds:   60,
   entryFee:         10,                                    // $ per round (shown on the leaderboard; set the sheet's Settings buy-ins to match)
   venmo:            "https://account.venmo.com/u/davidehp",
-  paypal:           "https://paypal.me/davidehp"
+  paypal:           "https://paypal.me/davidehp",
+  picksCsvUrl:      ""                                     // published 'Public Picks' tab CSV (name + group picks, NO email). Blank hides the button.
 };
