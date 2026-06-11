@@ -1,19 +1,28 @@
 const POOL = window.POOL;
 document.getElementById("poolBadge").textContent = POOL.label;
 
-// Knockout link: active once the real Round of 32 is in (window.KNOCKOUT_OPEN),
-// otherwise grayed out and not navigable.
+// Nav buttons: gray out (lock) the group link once picks close, and the knockout
+// link until the real Round of 32 is in (window.KNOCKOUT_OPEN).
 (function initNav(){
+  const gp = document.getElementById("groupLink");
+  if (gp && POOL.groupLocked){
+    gp.classList.add("locked");
+    gp.setAttribute("aria-disabled","true");
+    gp.removeAttribute("href");          // not navigable once locked
+    gp.title = "Group picks are locked.";
+    if (!gp.querySelector(".lock")) gp.insertAdjacentHTML("beforeend", ' <span class="lock">🔒</span>');
+  }
   const ko = document.getElementById("koLink");
-  if (!ko) return;
-  if (window.KNOCKOUT_OPEN){
-    ko.classList.remove("locked");
-    ko.removeAttribute("aria-disabled");
-    ko.title = "";
-    const lock = ko.querySelector(".lock"); if (lock) lock.remove();
-  } else {
-    ko.removeAttribute("href");          // not navigable while locked
-    ko.title = "Opens once the group stage is over and the Round of 32 is set.";
+  if (ko){
+    if (window.KNOCKOUT_OPEN){
+      ko.classList.remove("locked");
+      ko.removeAttribute("aria-disabled");
+      ko.title = "";
+      const lock = ko.querySelector(".lock"); if (lock) lock.remove();
+    } else {
+      ko.removeAttribute("href");        // not navigable while locked
+      ko.title = "Opens once the group stage is over and the Round of 32 is set.";
+    }
   }
 })();
 
