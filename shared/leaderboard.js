@@ -44,6 +44,13 @@ document.getElementById("poolBadge").textContent = POOL.label;
   img.src = BANNERS[Math.floor(Math.random() * BANNERS.length)];
 })();
 
+// Provisional-standings banner (set window.PROVISIONAL in data.js; "" hides it).
+(function renderProvisional(){
+  const el = document.getElementById("provNote");
+  if (!el) return;
+  if (window.PROVISIONAL){ el.textContent = window.PROVISIONAL; el.hidden = false; }
+})();
+
 // Info card: how-it-works + key dates (shared SCHEDULE) + pay buttons (from config).
 (function renderInfo(){
   const el = document.getElementById("info");
