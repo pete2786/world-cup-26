@@ -135,6 +135,25 @@ function openReview(){
   document.getElementById("modal").classList.add("open");
 }
 
+// Locked state: swap the bracket for a "closed" card and hide the submit bar.
+function renderLocked(){
+  const a = document.querySelector(".actions"); if (a) a.style.display = "none";
+  const w = document.querySelector(".wrap");
+  if (w) w.innerHTML =
+    `<header>
+      <a class="backlink" href="./">← Standings</a>
+      <div class="kicker">FIFA World Cup • Knockout Stage</div>
+      <h1>Bracket <span class="yr">’26</span></h1>
+      <div class="poolbadge">${POOL.label}</div>
+    </header>
+    <div class="lockcard">
+      <div class="lockicon">🔒</div>
+      <h2>Bracket picks are locked</h2>
+      <p>Submissions are closed for the knockout. Head to the standings to follow along.</p>
+      <a class="btn primary" href="./">See the standings →</a>
+    </div>`;
+}
+
 // null-safe listener binding: a missing element (e.g. during a cache version
 // skew) is skipped instead of throwing and aborting the rest of the script.
 function on(id,ev,fn){ const el=document.getElementById(id); if(el) el.addEventListener(ev,fn); }
@@ -145,4 +164,5 @@ on("review","click",openReview);
 on("closeX","click",()=>document.getElementById("modal").classList.remove("open"));
 on("modal","click",e=>{ if(e.target.id==="modal") e.currentTarget.classList.remove("open"); });
 
-render();
+if (POOL.bracketLocked) renderLocked();
+else render();

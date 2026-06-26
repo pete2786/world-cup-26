@@ -14,14 +14,16 @@ document.getElementById("poolBadge").textContent = POOL.label;
   }
   const ko = document.getElementById("koLink");
   if (ko){
-    if (window.KNOCKOUT_OPEN){
+    if (window.KNOCKOUT_OPEN && !POOL.bracketLocked){
       ko.classList.remove("locked");
       ko.removeAttribute("aria-disabled");
       ko.title = "";
       const lock = ko.querySelector(".lock"); if (lock) lock.remove();
     } else {
       ko.removeAttribute("href");        // not navigable while locked
-      ko.title = "Opens once the group stage is over and the Round of 32 is set.";
+      ko.title = POOL.bracketLocked
+        ? "Bracket picks are locked."
+        : "Opens once the group stage is over and the Round of 32 is set.";
     }
   }
   // "Everyone's Picks" button: only show once picks are published for this pool.

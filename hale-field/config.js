@@ -3,6 +3,7 @@
 window.POOL = {
   label:            "Hale Field",
   groupLocked:      true,                                  // group picks closed — set false to reopen the group page
+  bracketLocked:    false,                                 // set true at first knockout kickoff to close the bracket page
   submitUrl:        "https://script.google.com/macros/s/AKfycbxOeIMPwO_kLzgroH-2O0Av7-X6EsXSsiknwfqvcR4yoeH3m9g6iDXm-2J-ijwMeQIXtQ/exec", // Apps Script one-tap submit (group + bracket)
   bracketSubmitUrl: "",            // optional; falls back to submitUrl if blank
   groupCsvUrl:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbGs7rnyfUFQtO0hBpVhQSnbQav5SR4jpkxkskm8l_rjeImnL0dhTJClJstjQeIIWPpeuLD3z-XyMy/pub?gid=1069705092&single=true&output=csv",
