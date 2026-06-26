@@ -40,6 +40,15 @@ input[type=text]:focus,input[type=email]:focus{border-color:var(--accent2)}
 .pcount{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:6px;font-weight:600}
 .champ-tag{color:var(--gold)}
 
+.sectitle{font-family:"Oswald";text-transform:uppercase;letter-spacing:.12em;font-size:15px;font-weight:600;margin:26px 0 4px}
+.field{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.field .flab{font-family:"Oswald";text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--text);margin-bottom:4px}
+.field .fhint{font-size:12px;color:var(--muted);margin-bottom:10px}
+.field.goals{border-color:rgba(255,200,87,.5)}
+input[type=number]{width:100%;background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:10px;
+  padding:12px 14px;font-family:"Manrope";font-size:16px;font-weight:600;outline:none}
+input[type=number]:focus{border-color:var(--accent2)}
+
 .round{margin-top:26px}
 .round h2{font-family:"Oswald";text-transform:uppercase;letter-spacing:.12em;font-size:15px;font-weight:600;
   color:var(--text);margin:0 0 4px;display:flex;align-items:center;gap:10px}

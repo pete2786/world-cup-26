@@ -89,33 +89,42 @@ function updateStatus(){
   document.getElementById("champTag").textContent = champ ? "🏆 " + champ : "";
   const name = document.getElementById("who").value.trim();
   const email = document.getElementById("email").value.trim();
-  const ready = n===TOTAL && name.length>0 && emailOk(email);
+  const goals = finalGoalsVal();
+  const ready = n===TOTAL && name.length>0 && emailOk(email) && goals!==null;
   const btn = document.getElementById("review");
   btn.disabled = !ready;
   document.getElementById("hint").textContent =
     n<TOTAL ? `Pick all 31 matches to finish (${TOTAL-n} left).`
-            : (!name ? "Enter your name to finish." : (!emailOk(email) ? "Add your email to finish." : "All set — review your bracket."));
+            : (!name ? "Enter your name to finish."
+            : (!emailOk(email) ? "Add your email to finish."
+            : (goals===null ? "Guess the Final's goal total to finish."
+            : "All set — review your bracket.")));
 }
 
-// build the tab-separated code: Name + 31 picks, in sheet column order
+// the Final-goals tiebreaker guess (regulation + extra time, not the shootout)
+function finalGoalsVal(){ const v=document.getElementById("finalGoals").value.trim(); return v!=="" && Number.isFinite(Number(v)) && Number(v)>=0 ? v : null; }
+
+// build the tab-separated code: Name + 31 picks + Final-goals guess + email
+// (email stays LAST so the sheet/Apps Script keep email in the trailing column).
 function buildCode(){
   const name = document.getElementById("who").value.trim();
   const email = document.getElementById("email").value.trim();
   const flat = [].concat(...picks.map(r=>r.map(x=>x||"")));
-  return [name, ...flat, email].join("\t");
+  return [name, ...flat, finalGoalsVal()||"", email].join("\t");
 }
 
 function openReview(){
   const name = document.getElementById("who").value.trim();
-  if (countPicked()!==TOTAL || !name || !emailOk(document.getElementById("email").value)) return;
+  if (countPicked()!==TOTAL || !name || !emailOk(document.getElementById("email").value) || finalGoalsVal()===null) return;
   document.getElementById("rChamp").textContent = picks[4][0];
   const list = document.getElementById("review-list");
   list.innerHTML = "";
-  // show SF winners (finalists), QF winners, and champion path summary
+  // show SF winners (finalists), QF winners, champion path summary + goals guess
   const summary = [
     ["Finalists", `${picks[3][0]}  vs  ${picks[3][1]}`],
     ["Semifinalists", picks[2].join(", ")],
-    ["Quarterfinalists", picks[1].slice(0,4).join(", ") + " …"]
+    ["Quarterfinalists", picks[1].slice(0,4).join(", ") + " …"],
+    ["Goals in the Final", finalGoalsVal()]
   ];
   summary.forEach(([k,v])=>{
     const row=document.createElement("div"); row.className="revrow";
@@ -131,6 +140,7 @@ function openReview(){
 function on(id,ev,fn){ const el=document.getElementById(id); if(el) el.addEventListener(ev,fn); }
 on("who","input",updateStatus);
 on("email","input",updateStatus);
+on("finalGoals","input",updateStatus);
 on("review","click",openReview);
 on("closeX","click",()=>document.getElementById("modal").classList.remove("open"));
 on("modal","click",e=>{ if(e.target.id==="modal") e.currentTarget.classList.remove("open"); });

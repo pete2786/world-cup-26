@@ -6,10 +6,11 @@
  * Copy the resulting /exec URL into that pool's config.js `submitUrl`.
  *
  * The pick pages POST a tab-separated code:
- *   Group    = Name + 12 group winners + worst team + total goals + Email   (16 fields)
- *   Knockout = Name + 31 bracket picks + Email                              (33 fields)
+ *   Group    = Name + 12 group winners + worst team + total goals + Email      (16 fields)
+ *   Knockout = Name + 31 bracket picks + Final-goals guess + Email             (34 fields)
  * Email is the LAST field, so it lands in a trailing column and never disturbs
  * the scoring columns. Re-submitting with the same email overwrites that row.
+ * (33-field knockout codes from before the Final-goals tiebreaker are still accepted.)
  */
 
 function doPost(e) {
@@ -21,7 +22,7 @@ function doPost(e) {
 
     var fields = body.split("\t");
     var n = fields.length;
-    var tab = n === 16 ? "Group Picks" : n === 33 ? "Knockout Picks" : null;
+    var tab = n === 16 ? "Group Picks" : (n === 33 || n === 34) ? "Knockout Picks" : null;
     if (!tab) return out("error: unexpected field count " + n);
 
     var name = (fields[0] || "").trim();
