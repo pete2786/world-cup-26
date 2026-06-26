@@ -12,5 +12,6 @@ window.POOL = {
   entryFee:         10,
   venmo:            "https://account.venmo.com/u/davidehp",
   paypal:           "https://paypal.me/davidehp",
-  picksCsvUrl:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4IvSJa5miZlvtq76WVC-wxf2c-Oyd9S-riiuvJZ1t08DAXYzVd4DtT3jzlMOx6zlJ0Cv350BV4Vrh/pub?gid=987469934&single=true&output=csv"
+  picksCsvUrl:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4IvSJa5miZlvtq76WVC-wxf2c-Oyd9S-riiuvJZ1t08DAXYzVd4DtT3jzlMOx6zlJ0Cv350BV4Vrh/pub?gid=987469934&single=true&output=csv",
+  knockoutPicksCsvUrl: ""
 };

@@ -29,6 +29,9 @@ document.getElementById("poolBadge").textContent = POOL.label;
   // "Everyone's Picks" button: only show once picks are published for this pool.
   const pk = document.getElementById("picksLink");
   if (pk && POOL.picksCsvUrl && /^https?:\/\//.test(POOL.picksCsvUrl)) pk.style.display = "";
+  // "Everyone's Brackets" button: only show once knockout picks are published.
+  const bk = document.getElementById("bracketsLink");
+  if (bk && POOL.knockoutPicksCsvUrl && /^https?:\/\//.test(POOL.knockoutPicksCsvUrl)) bk.style.display = "";
 })();
 
 // Rotating top banner: a random photo of footballing despair on each load.

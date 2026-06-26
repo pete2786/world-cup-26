@@ -12,5 +12,6 @@ window.POOL = {
   entryFee:         10,                                    // $ per round (shown on the leaderboard; set the sheet's Settings buy-ins to match)
   venmo:            "https://account.venmo.com/u/davidehp",
   paypal:           "https://paypal.me/davidehp",
-  picksCsvUrl:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbGs7rnyfUFQtO0hBpVhQSnbQav5SR4jpkxkskm8l_rjeImnL0dhTJClJstjQeIIWPpeuLD3z-XyMy/pub?gid=204323192&single=true&output=csv" // Public Picks (no email)
+  picksCsvUrl:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbGs7rnyfUFQtO0hBpVhQSnbQav5SR4jpkxkskm8l_rjeImnL0dhTJClJstjQeIIWPpeuLD3z-XyMy/pub?gid=204323192&single=true&output=csv", // Public Picks (no email)
+  knockoutPicksCsvUrl: ""                                  // published 'Public Knockout Picks' tab CSV (name + 31 picks + goals, NO email). Blank hides the button. Publish only AFTER the bracket locks.
 };
