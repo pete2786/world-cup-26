@@ -113,24 +113,50 @@ function buildCode(){
   return [name, ...flat, finalGoalsVal()||"", email].join("\t");
 }
 
+// Review style remembered per person (Funnel default, or Champion's Road).
+let reviewMode = (function(){ try{ return localStorage.getItem("wc-review-mode")||"funnel"; }catch(e){ return "funnel"; } })();
+
+function setReviewMode(mode){
+  reviewMode = (mode==="road") ? "road" : "funnel";
+  try{ localStorage.setItem("wc-review-mode", reviewMode); }catch(e){}
+  document.querySelectorAll("#revToggle button").forEach(b=>b.classList.toggle("active", b.dataset.mode===reviewMode));
+  renderReview(reviewMode);
+}
+
+// the team the champion beat in round ri (the other side of the match they won)
+function champOpponent(champ, ri){
+  const mi = picks[ri].indexOf(champ);
+  if (mi < 0) return "";
+  const cand = candidates(ri, mi);
+  return cand[0]===champ ? cand[1] : cand[0];
+}
+
+function renderReview(mode){
+  const champ = picks[4][0];
+  const goalsRow = `<div class="revrow"><span class="k">Goals in the Final</span><span class="v">${finalGoalsVal()}</span></div>`;
+  let html = "";
+  if (mode === "road"){
+    // the champion's run: who they beat each round to lift the cup
+    for (let ri=0; ri<ROUNDS.length; ri++){
+      html += `<div class="revrow"><span class="k">${ROUNDS[ri].title}</span><span class="v">def. ${champOpponent(champ, ri)}</span></div>`;
+    }
+  } else {
+    // funnel: every round's survivors, narrowing R32 -> Champion (confirms all picks)
+    html += `<div class="fnl">`;
+    for (let ri=0; ri<4; ri++){
+      const chips = picks[ri].map(t=>`<span class="chip">${t}</span>`).join("");
+      html += `<div class="fnlrow"><div class="rlab">${ROUNDS[ri].title} · ${picks[ri].length} advance</div><div class="fnlchips">${chips}</div></div>`;
+    }
+    html += `<div class="fnlrow"><div class="rlab">Champion</div><div class="fnlchips"><span class="chip champ">🏆 ${champ}</span></div></div></div>`;
+  }
+  document.getElementById("review-list").innerHTML = html + goalsRow;
+}
+
 function openReview(){
   const name = document.getElementById("who").value.trim();
   if (countPicked()!==TOTAL || !name || !emailOk(document.getElementById("email").value) || finalGoalsVal()===null) return;
   document.getElementById("rChamp").textContent = picks[4][0];
-  const list = document.getElementById("review-list");
-  list.innerHTML = "";
-  // show SF winners (finalists), QF winners, champion path summary + goals guess
-  const summary = [
-    ["Finalists", `${picks[3][0]}  vs  ${picks[3][1]}`],
-    ["Semifinalists", picks[2].join(", ")],
-    ["Quarterfinalists", picks[1].slice(0,4).join(", ") + " …"],
-    ["Goals in the Final", finalGoalsVal()]
-  ];
-  summary.forEach(([k,v])=>{
-    const row=document.createElement("div"); row.className="revrow";
-    row.innerHTML=`<span class="k">${k}</span><span class="v">${v}</span>`;
-    list.appendChild(row);
-  });
+  setReviewMode(reviewMode);
   wireSubmit(POOL.bracketSubmitUrl || POOL.submitUrl, buildCode());
   document.getElementById("modal").classList.add("open");
 }
@@ -163,6 +189,7 @@ on("finalGoals","input",updateStatus);
 on("review","click",openReview);
 on("closeX","click",()=>document.getElementById("modal").classList.remove("open"));
 on("modal","click",e=>{ if(e.target.id==="modal") e.currentTarget.classList.remove("open"); });
+document.querySelectorAll("#revToggle button").forEach(b=>b.addEventListener("click",()=>setReviewMode(b.dataset.mode)));
 
 if (POOL.bracketLocked) renderLocked();
 else render();

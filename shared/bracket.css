@@ -103,6 +103,14 @@ input[type=number]:focus{border-color:var(--accent2)}
 .champline{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,rgba(255,200,87,.15),transparent);
   border:1px solid var(--gold);border-radius:12px;padding:12px 14px;margin:12px 0;font-weight:800;font-size:18px}
 .champline .lbl{font-family:"Oswald";font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.revtoggle{display:flex;gap:4px;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:4px;margin:12px 0}
+.revtoggle button{flex:1;background:transparent;border:0;color:var(--muted);font-family:"Oswald";text-transform:uppercase;letter-spacing:.06em;font-size:12px;font-weight:600;padding:9px 6px;border-radius:7px;cursor:pointer}
+.revtoggle button.active{background:var(--accent);color:#fff}
+.fnl{display:flex;flex-direction:column;gap:11px;margin-bottom:8px}
+.fnlrow .rlab{font-family:"Oswald";text-transform:uppercase;letter-spacing:.08em;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:6px}
+.fnlchips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:700;color:var(--text)}
+.chip.champ{background:linear-gradient(90deg,rgba(255,200,87,.22),transparent);border-color:var(--gold);color:#fff}
 .revrow{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}
 .revrow .k{color:var(--muted);font-family:"Oswald";letter-spacing:.06em;text-transform:uppercase;font-size:12px}
 .revrow .v{font-weight:700;text-align:right}
