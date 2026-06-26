@@ -22,7 +22,9 @@ function doPost(e) {
 
     var fields = body.split("\t");
     var n = fields.length;
-    var tab = n === 16 ? "Group Picks" : (n === 33 || n === 34) ? "Knockout Picks" : null;
+    // Route by field-count RANGE so future form tweaks never need a redeploy:
+    // group codes are ~16 fields, knockout codes are ~33+.
+    var tab = (n >= 14 && n <= 20) ? "Group Picks" : (n >= 30) ? "Knockout Picks" : null;
     if (!tab) return out("error: unexpected field count " + n);
 
     var name = (fields[0] || "").trim();
