@@ -22,18 +22,18 @@ window.R32 = [
   ["France","Sweden"],                          // M77
   ["South Africa","Canada"],                    // M73
   ["Netherlands","Morocco"],                    // M75
-  ["2K","2L"],                                  // M83
-  ["Spain","2J"],                               // M84
+  ["Portugal","Croatia"],                       // M83
+  ["Spain","Austria"],                          // M84
   ["United States","Bosnia and Herzegovina"],   // M81
-  ["Belgium","3AEHIJ"],                         // M82
+  ["Belgium","Senegal"],                        // M82
   ["Brazil","Japan"],                           // M76
   ["Ivory Coast","Norway"],                     // M78
-  ["Mexico","3CEFHI"],                          // M79
-  ["1L","3EHIJK"],                              // M80
+  ["Mexico","Ecuador"],                         // M79
+  ["England","DR Congo"],                       // M80
   ["Argentina","Cape Verde"],                   // M86
   ["Australia","Egypt"],                        // M88
-  ["Switzerland","3EFGIJ"],                     // M85
-  ["1K","3DEIJL"]                               // M87
+  ["Switzerland","Algeria"],                    // M85
+  ["Colombia","Ghana"]                          // M87
 ];
 
 // The "Knockout Bracket" link on each pool's leaderboard stays grayed out until
