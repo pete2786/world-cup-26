@@ -52,4 +52,4 @@ window.SCHEDULE = [
 
 // Provisional-standings banner on the leaderboard. Set to "" to hide it (e.g. once
 // the group stage is final). Update the wording as you post each matchday's results.
-window.PROVISIONAL = "Provisional — group standings as of Matchday 1. Points will change as the groups finish.";
+window.PROVISIONAL = "";
