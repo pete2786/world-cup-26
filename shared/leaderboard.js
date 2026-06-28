@@ -62,12 +62,12 @@ document.getElementById("poolBadge").textContent = POOL.label;
   if (!el) return;
   const fee = POOL.entryFee;
   const dates = (window.SCHEDULE || []).map(s =>
-    `<li><span class="d">${s.date}</span><span class="l">${s.label}</span></li>`).join("");
+    `<li class="${s.done?"done":""}"><span class="d">${s.date}</span><span class="l">${s.label}</span></li>`).join("");
   const pay = [];
   if (POOL.venmo)  pay.push(`<a class="pay venmo" href="${POOL.venmo}" target="_blank" rel="noopener">Venmo</a>`);
   if (POOL.paypal) pay.push(`<a class="pay paypal" href="${POOL.paypal}" target="_blank" rel="noopener">PayPal</a>`);
   el.innerHTML =
-    `<p class="info-how">Two contests, two pots — <b>Group stage</b> and <b>Knockout</b>${fee?`, <b>$${fee} to enter each round</b>`:""}. Group picks are open now; the knockout bracket opens after the group stage.</p>`
+    `<p class="info-how">Two contests, two pots: <b>Group stage</b> and <b>Knockout</b>${fee?`, <b>$${fee} to enter each round</b>`:""}. Most total points each round wins that pot.</p>`
     + (dates ? `<ul class="info-dates">${dates}</ul>` : "")
     + (pay.length ? `<div class="info-pay"><span class="pl">Pay your entry${fee?` · $${fee}/round`:""}</span><span class="paybtns">${pay.join("")}</span></div>` : "");
 })();

@@ -40,6 +40,9 @@ h1 .yr{color:var(--accent)}
 .info-dates li{display:flex;gap:12px;font-size:13px;align-items:baseline}
 .info-dates .d{font-family:"Oswald";font-weight:600;letter-spacing:.04em;color:var(--accent);min-width:52px}
 .info-dates .l{color:var(--muted)}
+.info-dates li.done{opacity:.5}
+.info-dates li.done .d,.info-dates li.done .l{text-decoration:line-through}
+.info-dates li.done .d{color:var(--muted)}
 .info-pay{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:space-between;border-top:1px solid var(--line);padding-top:12px}
 .info-pay .pl{font-family:"Oswald";text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--text)}
 .paybtns{display:flex;gap:8px}
@@ -48,6 +51,7 @@ h1 .yr{color:var(--accent)}
 .pay.paypal{background:#0070BA}
 .pay:hover{filter:brightness(1.08)}
 
+.provnote[hidden]{display:none}
 .provnote{display:flex;gap:9px;align-items:flex-start;margin-top:16px;background:rgba(255,200,87,.09);border:1px solid rgba(255,200,87,.55);border-radius:11px;padding:11px 14px;font-size:13px;font-weight:600;color:var(--text);line-height:1.45}
 .provnote::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:5px;box-shadow:0 0 0 4px rgba(255,200,87,.18)}
 

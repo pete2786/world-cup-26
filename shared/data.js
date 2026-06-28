@@ -44,9 +44,9 @@ window.KNOCKOUT_OPEN = JSON.stringify(window.R32) !== '[["Spain","Uruguay"],["Ge
 
 // Tournament-wide key dates shown on every pool's leaderboard. Edit once here.
 window.SCHEDULE = [
-  { date: "Jun 11", label: "Group picks lock (opening match)" },
-  { date: "Jun 27", label: "Group stage ends" },
-  { date: "Jun 28", label: "Knockout opens — bracket picks lock at the first match" },
+  { date: "Jun 11", label: "Group picks lock (opening match)", done: true },
+  { date: "Jun 27", label: "Group stage ends", done: true },
+  { date: "Jun 28", label: "Knockout opens, bracket picks lock at the first match", done: true },
   { date: "Jul 19", label: "Final" }
 ];
 
