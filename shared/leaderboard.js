@@ -118,7 +118,7 @@ function escapeHTML(s){ return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;","
 
 function paint(elId, countId, data, unit){
   const el=document.getElementById(elId), cnt=document.getElementById(countId);
-  if(!data.length){ el.innerHTML='<div class="empty">No entries yet — be the first in.</div>'; cnt.textContent=""; return; }
+  if(!data.length){ el.innerHTML='<div class="empty">No entries yet. Be the first in.</div>'; cnt.textContent=""; return; }
   cnt.textContent = data.length + " playing";
   el.innerHTML = data.map((p,i)=>rowHTML(p,i,unit)).join("");
 }
@@ -134,9 +134,9 @@ async function refresh(){
   const st=document.getElementById("status"); st.textContent="updating…";
   let ok=true;
   try{ const g=await load(POOL.groupCsvUrl,"Points"); if(g===null) document.getElementById("gBoard").innerHTML='<div class="empty">Group leaderboard link not set.</div>'; else paint("gBoard","gCount",g,"pts"); }
-  catch(e){ ok=false; document.getElementById("gBoard").innerHTML='<div class="empty">Couldn’t load yet — is the Group leaderboard published?</div>'; }
+  catch(e){ ok=false; document.getElementById("gBoard").innerHTML='<div class="empty">Couldn’t load yet. Is the Group leaderboard published?</div>'; }
   try{ const k=await load(POOL.knockoutCsvUrl,"Total"); if(k===null) document.getElementById("kBoard").innerHTML='<div class="empty">Knockout leaderboard link not set.</div>'; else paint("kBoard","kCount",k,"pts"); }
-  catch(e){ ok=false; document.getElementById("kBoard").innerHTML='<div class="empty">Couldn’t load yet — is the Knockout leaderboard published?</div>'; }
+  catch(e){ ok=false; document.getElementById("kBoard").innerHTML='<div class="empty">Couldn’t load yet. Is the Knockout leaderboard published?</div>'; }
   st.textContent = ok ? "updated " + new Date().toLocaleTimeString() : "couldn’t reach the sheet";
 }
 
