@@ -54,6 +54,8 @@ h1 .yr{color:var(--accent)}
 .board{margin-top:24px}
 .board h2{font-family:"Oswald";text-transform:uppercase;letter-spacing:.12em;font-size:16px;font-weight:600;margin:0 0 2px;display:flex;align-items:center;gap:10px}
 .board h2 .count{font-family:"Manrope";font-weight:700;font-size:12px;color:var(--accent2);background:rgba(0,224,164,.12);padding:3px 9px;border-radius:999px;letter-spacing:0}
+.board h2 .livetag{font-family:"Manrope";font-weight:800;font-size:11px;letter-spacing:.04em;color:#fff;background:var(--accent);padding:3px 9px;border-radius:999px;text-transform:uppercase}
+.board h2 .finaltag{font-family:"Manrope";font-weight:700;font-size:11px;letter-spacing:.04em;color:var(--muted);background:var(--surface2);border:1px solid var(--line);padding:2px 9px;border-radius:999px;text-transform:uppercase}
 .board .hr{height:2px;background:linear-gradient(90deg,var(--accent),transparent 70%);border-radius:2px;margin:6px 0 12px}
 
 .rowlist{display:flex;flex-direction:column;gap:6px}
